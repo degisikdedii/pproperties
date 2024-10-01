@@ -1,0 +1,238 @@
+<?php
+// IGNORE_THIS_FILE_FOR_TRANSLATION
+$tip = '<p><span class="tip">Sugerència: Si no pot trobar el text requerit, pot agregar més textos a la pestanya Propietats.</span></p>';
+$macros = <<<'EOD'
+<p>Podeu crear cadenes d'explicació dinàmiques utilitzant macros. Quan feu servir macros, el motor de plantilles calcula i substitueix valors de quantitat en lloc de macros en la cadena d'explicació.
+Estan disponibles les següents macros.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>Macro</span><span>Descripció</span></div>
+<div><span>{CRMIN}</span><span>càlcul quantitat mínima</span></div>
+<div><span>{CRMAX}</span><span>càlcul quantitat màxima</span></div>
+</div>
+EOD;
+
+$help = array();
+
+$help['pp_qty_policy'] = <<<'EOD'
+<p>La quantitat de producte pot estar subjecta a diferents polítiques. La política defineix com es comporta el mòdul i com manipula la quantitat de producte.</p>
+<p>Quan un usuari ingressa la quantitat, la quantitat demanada pot especificar un <em>número d'items</em> (peces, paquets, etc.) al carret de compra.
+Quan l'usuari pressiona el botó "Afegir a la cistella", el mòdul afegeix una fila a la comanda.
+Quan l'usuari afegeix més articles del mateix producte, el mòdul combina totes les quantitats especificades en la mateixa fila. És un comportament habitual de PrestaShop.</p>
+<p>La quantitat demanada pot especificar un <em>número d'unitats senceres</em> (però no elements), per exemple, metres.
+Quan l'usuari ingressa la quantitat de 45 metres per una corda, la targeta de compra contindrà un producte (corda) amb la longitud especificada de 45 metres.
+i no 45 elements de la corda com succeiria en la instal·lació estàndard de PrestaShop.
+Mentre fa servir unitats senceres, cada vegada que l'usuari pressiona el botó "Afegir a la cistella", el mòdul afegeix una nova fila amb la quantitat especificada a la cistella de la compra.
+<span class="note">Nota: pot anul·lar aquest comportament triant l'opció de quantitats agregades en "mode de quantitat".</span></p>
+<p>La quantitat també pot especificar les <em> unitats fraccionaries </em> (quantitat en valors decimals), com kilogram o metre.
+Aquest és el comportament obligatori per a les botigues d'alimentació o teles. A l'usar unitats fraccionàries, cada vegada que l'usuari pressiona el botó "Afegir a la cistella",
+el mòdul afegeix una nova fila amb la quantitat especificada a la cistella de la compra.
+<span class="note">Nota: pot anul·lar aquest comportament triant l'opció de quantitats agregades en "mode de quantitat".</span></p>
+EOD;
+
+$help['pp_qty_mode'] = <<<'EOD'
+<p>
+La manera de quantitat defineix si pot mesurar la quantitat exactament o només aproximadament. Per exemple, si l'usuari demana 2 kg de peres, el pes real pot ser lleugerament diferent. Podeu ignorar la diferència a la botiga o pot donar a l'usuari una explicació sobre la seva política comercial.
+<br>Aquesta propietat només té sentit quan la política de quantitat s'estableix en unitats senceres o fraccionàries, però no en articles.</p>
+<p>La opció <em>de quantitats agregades</em> li permet especificar què passa quan l'usuari prem el botó "Afegir a la cistella".
+A l'usar unitats senceres o fraccionàries, cada vegada que l'usuari pressiona el botó "Afegir a la cistella", el mòdul afegeix una nova fila amb la quantitat especificada a la cistella de la compra. Quan tria l'opció de quantitats agregades, el mòdul intenta afegir una nova quantitat a la fila existent amb el mateix producte al cistell de la compra.</p>
+EOD;
+
+$help['pp_display_mode'] = <<<'EOD'
+<p>La manera de visualització defineix com el mòdul presenta el preu del producte.</p>
+<p>En el mode <em>normal </em>,el mòdul mostra el preu del producte segons el definit pel tema. En general, el tema emfatitza el preu del producte per atreure l'atenció de l'usuari.</p>
+<p>En el mode de <em>visualització de preu invertit</em>, el preu unitari s'utilitza com el preu principal que es mostra a la pàgina del producte i reemplaça el preu normal a la pàgina d'inici i en les categories o pàgines de productes de venda creuada.
+Si ven un producte car, pot especificar les unitats petites amb el preu baix i fer que el seu producte es vegi més atractiu per l'usuari.
+<br><span class="note">Nota: d'especificar un text de preu unitari per a la manera de visualització de preu invertit.</span></p>
+<p>El mode <em>mostrar el preu minorista com preu unitari</em> indica al mòdul que mostri un preu minorista en la posició del preu unitari.
+Aquesta manera és útil quan el producte té combinacions i els preus de combinació són diferents del preu base.</p>
+<p>El mode <em>mostrar el preu unitari base per a totes les combinacions</em> indica al mòdul que mostri el preu unitari calculat per l'atribut predeterminat per totes les combinacions.
+Aquesta manera és útil quan el producte té combinacions amb diferents preus i li agradaria mostrar informació de preu addicional que no depèn del preu de combinació.</p>
+<p>El mode <em>mostrar el preu del producte heredat</em> indica al mòdul que mostri un preu de producte heretat en lloc d'un preu de producte calculat dinàmicament.</p>
+<p>El mode<em>mostrar el preu unitari en comandes i factures</em> instrueix el mòdul, per a productes amb preu unitari més gran que zero, que mostri un preu unitari com un detall addicional en comandes i factures.</p>
+<p>El mode <em>mostrar el nombre d'articles en lloc de la quantitat</em> indica al mòdul que mostri una quantitat d'articles demanats en lloc d'una quantitat de producte calculada dinàmicament.
+Aquesta manera és útil quan el producte usa les característiques multidimensionals i la quantitat total calculada depèn de el nombre d'articles i de la quantitat o mida de cada article.</p>
+<p><br>Per brindar més informació a l'usuari, el mòdul mostra diferents textos i detalls addicionals sobre la quantitat, preu del producte,
+preu unitari i total en comandes i factures. A vegades no és aconsellable mostrar aquesta informació. Podeu ajustar la visualització d'aquests detalls seleccionant ocultant detalls addicionals per <em>preu unitari</em>, <em>quantitat</em> i <em>preu total</em> en comandes i factures.</p>
+EOD;
+
+$help['pp_price_display_mode'] = <<<'EOD'
+<p>La visualització dinàmica de preus és un element visual addicional agregat en l'Extensió de propietats del producte.
+El preu es mostra per la quantitat especificada i es recalcula immediatament quan canvia la quantitat. Això li dóna a l'usuari una millor experiència de compra.</p>
+<p>En mode <em>normal</em>, el mòdul calcula i mostra el preu en un bloc separat.</p>
+<p>En el mode <em>com preu del producte</em>, el mòdul mostra el preu calculat en lloc de el preu del producte predeterminat.</p>
+<p>En el mode <em>ocultar visualització de preus</em> el mòdul no mostra el preu calculat.</p>
+EOD;
+
+$help['pp_unit_price_ratio'] = <<<'EOD'
+<p>Relació entre el preu del producte i el preu unitari. Per exemple, si ven el producte en kg i li agradaria que el preu unitari es mostri com "per 100 g", especifiqui la relació de al preu unitari com 10.</p>
+<p>El mòdul utilitza la relació de preu unitari per calcular el preu unitari del producte a la botiga i en el catàleg de productes.
+Quan canvia el preu en el catàleg, el mòdul recalcula automàticament el preu unitari.</p>
+EOD;
+
+$help['pp_minimum_price_ratio'] = <<<'EOD'
+<p>Un llindar utilitzat per calcular el preu mínim. Quan l'usuari especifica una quantitat menor que el llindar especificat, el preu es calcula utilitzant el llindar donat com a quantitat. El resultat és que el preu mai serà menor que el preu base multiplicat pel llindar de quantitat donat, independentment de la quantitat demanada.</p>
+EOD;
+
+$help['pp_default_quantity'] = <<<'EOD'
+<p>Especifiqueu la quantitat predeterminada per comprar un producte. La quantitat predeterminada és una quantitat inicial que es mostra a la pàgina d'un producte.
+El mòdul també usa la quantitat predeterminada quan afegeix productes a la targeta des de les pàgines que tenen el botó "Afegir a la cistella" però no ofereixen el camp de quantitat, com les pàgines d'inici o categories de productes.
+Estableix la quantitat predeterminada en unitats senceres o fraccionàries.</p>
+EOD;
+
+$help['pp_qty_step'] = <<<'EOD'
+<p>Especifiqueu els increments de quantitat per a restringir la quantitat ingressada per l'usuari als valors específics.
+El mòdul arrodoneix la quantitat demanada a la valor que coincideix amb el pas de quantitat especificat.
+Per exemple, si ven les teles en increments de 0,2 m, pot establir el pas de quantitat en 0,2.
+La quantitat demanada s'arrodonirà a 0,2, 0,4, ... 1,6, 1,8, etc.</p>
+<p><em>Característica professional</em><br>A la versió Pro, pot especificar el pas de quantitat a la pàgina del producte en el back office.
+Això funciona tant per a productes simples com per a productes amb combinacions. Podeu especificar el pas de quantitat per separat per a cada combinació.</p>
+EOD;
+
+$help['pp_qty_shift'] = <<<'EOD'
+<p>Especifiqueu el canvi en la quantitat quan l'usuari pressiona els botons cap amunt i cap avall en el camp de quantitat.
+Això es diferencia de el pas de quantitat. El canvi de quantitat no restringeix l'entrada de cap valor arbitrari.
+Aquest atribut no té cap efecte quan s'utilitza el pas de quantitat o els valors de quantitat específics.</p>
+EOD;
+
+$help['pp_qty_decimals'] = <<<'EOD'
+<p>Especifiqueu quants decimals vol mostrar per la quantitat. Aquest atribut només funciona quan la política de quantitat s'estableix en unitats fraccionàries.</p>
+EOD;
+
+$help['pp_qty_values'] = <<<'EOD'
+<p>Especifiqueu un o més valors per a usar com a quantitat de comanda. A l'especificar els valors aquí, restringeix efectivament la quantitat ingressada per l'usuari a la llista especificada.<br>
+Això pot ser útil, per exemple, quan ven el seu producte en els paquets de les quantitats predefinides.</p>
+<p>Per especificar només un valor, poseu el valor en el camp d'entrada de valors de quantitat específics.<br>
+Per especificar diversos valors, separeu-los amb el símbol de la canonada. Per exemple: 10 | 20 | 40 | 100</p>
+EOD;
+
+$help['pp_explanation'] = <<<'EOD'
+<p>L'explicació en línia apareix en el bloc de comandes a la pàgina d'un producte. En general, és un missatge especial que explica la política comercial, però pot ser qualsevol text o HTML vàlid i pot incloure imatges.</p>
+<p>Podeu crear cadenes d'explicació dinàmiques utilitzant macros. Quan fa servir macros, el motor de plantilles calcula i substitueix valors de quantitat en lloc de macros en la cadena d'explicació.</p>
+Están disponibles les sigüents macros.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>Macro</span><span>Descripció</span></div>
+<div><span>{MIN}</span><span>quantitat máxima</span></div>
+<div><span>{MAX}</span><span>quantitat màxima</span></div>
+<div><span>{TMAX}</span><span>quantitat total màxima</span></div>
+<div><span>{STEP}</span><span>pas de quantitat</span></div>
+<div><span>{URATIO}</span><span>relació de preu unitari</span></div>
+</div>
+EOD;
+$help['pp_explanation'] .= '<br>' . $tip;
+
+$help['pp_css'] = <<<'EOD'
+<p>Classes CSS separades per espai. El mòdul afegeix aquestes classes a HTML per a productes que fan servir aquesta plantilla. Podeu utilitzar aquest camp per ajustar l'aspecte del producte a la botiga.</p>
+<p>Podeu crear les seves pròpies classes CSS i afegir-en el següent arxiu: <span style="white-space: nowrap; font-family: monospace;">themes/&lt;your_theme_name&gt;/modules/pproperties/css/custom.css</span></p>
+<p>També pot utilitzar una sèrie de classes predefinides.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>Clase CSS</span><span>Descripció</span></div>
+<div><span>psm-hide-{cssClass}</span><span>Generi automàticament l'estil CSS per ocultar qualsevol element a la pantalla. Reemplaçar una cadena de text <span style="white-space: nowrap; font-family: monospace;">{cssClass}</span> < amb un nom de classe CSS vàlid per generar una definició d'estil CSS rellevant.
+<br>Per exemple, <span style="white-space: nowrap; font-family: monospace;">psm-hide-product-unit-price</span> generará el següent estil CSS:<br>
+<span style="white-space: nowrap; font-family: monospace;">.psm-hide-product-unit-price .product-unit-price {display: none !important;}</span>
+</span></span></div>
+<div><span>psm-display-{cssClass}</span><span>Generi automàticament l'estil CSS per mostrar qualsevol element prèviament ocult a la pantalla. Reemplaçar una cadena de text <span style="white-space: nowrap; font-family: monospace;">{cssClass}</span> amb un nom de classe CSS vàlid per generar una definició d'estil CSS rellevant.
+<br>>Per exemple, <span style="white-space: nowrap; font-family: monospace;">psm-display-product-unit-price</span> generará el següent estil CSS:<br>
+<span style="white-space: nowrap; font-family: monospace;">.psm-display-product-unit-price .product-unit-price {display: inherit !important;}</span>
+</span></span></div>
+<div><span>psm-attribute-label-highlight</span><span>Ressalteu i emfatitzi els noms dels grups d'atributs de productes en una pàgina de productes.</span></div>
+<div><span>psm-attribute-color-{size}</span><span>Mida d'un rectangle visual per a un grup d'atributs de producte definit com un atribut de color.
+Substitueix a <span style="white-space: nowrap; font-family: monospace;">{size}</span> cadena amb un dels sigüents valors: <span style="white-space: nowrap; font-family: monospace;">
+petit, mitjà, gran, xlarge, xxlarge, xxxlarge, jumbo</span>.</span></div>
+<div><span>psm-attribute-color-text-visible</span><span>Feu que els noms dels atributs siguin visibles per un grup d'atributs de productes definit com un atribut de color.</span></div>
+<div><span>pp-quantity-wanted-hidden</span><span>Oculteu un camp de quantitat d'entrada a la pàgina del producte.</span></div>
+<div><span>pp-product-list-add-to-cart-hidden</span><span>Oculteu el botó "afegir a la cistella" a la categoria, productes nous, productes populars, productes més venuts, resultats de recerca i altres pàgines que mostren una llista de productes.
+<br><em>Nota: funciona només amb temes compatibles.</em></span></div>
+<div><span>pp-packs-calculator-quantity-hidden</span><span>Oculteu el camp de quantitat de la calculadora de paquets a la pàgina d'un producte quan la plantilla utilitzeu la funció de càlcul de paquets de complements multidimensionals.</span></div>
+<div><span>pp-ext-highlight</span><span>Ressalteu i emfatitzi el bloc de dimensions en la pàgina d'un producte quan la plantilla utilitza les funcions de complements multidimensionals.</span></div>
+<div><span>pp-ext-nohighlight</span><span>No ressalti ni emfatitzi el bloc de dimensions en la pàgina d'un producte quan la plantilla utilitza les funcions de complements multidimensionals.</span></div>
+<div><span>pp-ext-position-after-{cssClass}</span><span>Move the dimensions block after the specified element on the screen. Replace a <span style="white-space: nowrap; font-family: monospace;">{cssClass}</span> string with a valid CSS class name.
+<br>For example, <span style="white-space: nowrap; font-family: monospace;">pp-ext-position-after-product-variants</span> will place the dimensions block after the product attributes.
+<br><em>Note: the dimensions block can be moved only within the same HTML form element.</em></span></span></div>
+</div>
+EOD;
+
+$help['pp_ms_display'] = <<<'EOD'
+<p><em>Pro feature</em><br><br>Seleccionant <em>visible</em> indica al mòdul que afegiu un bloc que permeti als clients triar el sistema de mesura d'unitat preferit
+a la pàgina del producte i calculi les quantitats i els preus en conseqüència.
+<br>Consulteu la documentació de la versió Pro per obtenir detalls addicionals sobre com utilitzar aquesta funció.</p>
+EOD;
+
+$help['pp_customization'] = <<<'EOD'
+<p>El mòdul Extensió de propietats del producte admet personalitzacions definides per l'usuari. Pot escriure el seu propi codi en PHP i el mòdul cridarà al seu codi quan sigui necessari.</p>
+<p>Pot escriure, per exemple, codi que validi productes en una comanda utilitzant les seves pròpies regles. Des de la seva codi, pot trucar als mètodes interns de PrestaShop, accedir a la base de dades o realitzar qualsevol altra activitat dissenyada.
+Això brinda infinites possibilitats per ajustar el mòdul a les seves necessitats.</p>
+<p>Per utilitzar les personalitzacions, heu d'instal·lar el mòdul gratuït "Personalització de l'extensió de propietats del producte". Poseu-vos en contacte amb el nostre amable servei d'atenció a client per obtenir instruccions. L'equip de PS & More també pot escriure codi per a vostè i brinda un servei de personalització de pagament per als nostres clients.</p>
+EOD;
+
+$help['pp_ext_method'] = <<<'EOD'
+<div class="pp-table first-col-nowrap">
+<div><span>multiplicació:</span><span>les dimensions en totes les direccions es multipliquen (donant àrea o volum)</span></div>
+<div><span>suma:</span><span>s'afegeixen dimensions en totes les direccions</span></div>
+<div><span>dimensió única:</span><span>la quantitat de dimensió especificada s'utilitza per al càlcul del preu</span></div>
+<div><span>desactivar càlcul:</span><span>les dimensions serveixen només com a camps d'entrada i no afecten el càlcul del preu (requereix el complement Multidimensional Pro o Premium)</span></div>
+<div><span>càlcul personalizat:</span><span>càlcul personalitzat definit per l'usuari (requereix el complement multidimensional Pro o Premium)<br>
+Pot escriure el seu propi codi en PHP i el complement cridarà al seu codi quan sigui necessari.
+Des de la seva codi, pot trucar als mètodes interns de PrestaShop, accedir a la base de dades o realitzar qualsevol altra activitat dissenyada.
+Això brinda infinites possibilitats per realitzar qualsevol càlcul que necessiti.</span></div>
+</div>
+EOD;
+
+$help['pp_ext_precision'] = <<<'EOD'
+<p>Round the display of the calculation result and the total calculation result to the specified number of decimal digits.
+If the precision is positive, the number is rounded to precision significant digits after the decimal point.
+If the precision is negative, the number is rounded to precision significant digits before the decimal point.
+<br>Round affects only how the number is displayed and not how it is used for the price calculations.</p>
+EOD;
+
+$help['pp_ext_explanation'] = <<<'EOD'
+<p>Una explicació que es mostra sota del resultat de el càlcul. En general, és un missatge especial que explica la política comercial, però pot ser qualsevol missatge.</p>
+EOD;
+$help['pp_ext_explanation'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_minimum_quantity_text'] = <<<'EOD'
+<p>Text mostrat quan la quantitat calculada és més gran que el mínim especificat.</p>
+EOD;
+$help['pp_ext_minimum_quantity_text'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_maximum_quantity_text'] = <<<'EOD'
+<p>Text mostrat quan la quantitat calculada és més gran que el màxim especificat.</p>
+EOD;
+$help['pp_ext_maximum_quantity_text'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_minimum_price_ratio'] = <<<'EOD'
+<p>Un llindar utilitzat per calcular el preu mínim. Després que l'usuari especifica quantitats multidimensionals, el càlcul es realitza en funció de mètode de càlcul donat.
+Si el preu de la quantitat calculada és menor que el llindar especificat, el preu calculat utilitzant el llindar donat com a quantitat.
+El resultat és que el preu mai serà menor que el preu base multiplicat pel llindar de quantitat donat, independentment de la quantitat demanada.</p>
+EOD;
+
+$help['pp_ext_policy'] = <<<'EOD'
+<p>La política de dimensions especifica com s'utilitzen les dimensions.</p>
+<p>En el mode <em>per defecte</em> de política de dimensions el client ingressa les dimensions en una pàgina de producte. Per exemple, ample, llarg o alt.
+En aquesta manera el producte representat per dos quantitats diferents. L'un és la quantitat calculada utilitzant el mètode de càlcul especificat i pot ser un quadrat, perímetre, volum o una altra cosa.
+L'altra és la quantitat que el client ingressa al camp de quantitat regular. Aquesta quantitat especifica el nombre d'articles demanats on cada article té la mida de la quantitat calculada.</p>
+<p>En el mode <em>calculadora de paquets</em> el client especifica les dimensions per calcular el nombre d'articles del producte.
+Per exemple, si ven rajoles en caixes de cartró, les dimensions utilitzades per calcular l'àrea. L'àrea calculada en metres quadrats (o altres unitats) determina la quantitat de caixes i el preu.</p>
+<p>Per especificar la quantitat del producte en el paquet (la quantitat de metres quadrats a la caixa en el nostre exemple) utilitzeu el camp "relació de preu unitari" a la plantilla
+o el camp "preu unitari" en una pàgina de producte en el catàleg de productes en el back office.</p>
+EOD;
+
+$help['pp_ext_dimensions'] = <<<'EOD'
+<div class="pp-table first-col-nowrap">
+<div><span>dimensió:</span><span>Nombre de dimensió.<br><i>Establiu aquest camp en blanc per eliminar la dimensió.</i></span></div>
+<div><span>quantity text:</span><span>Texte mostrat després de la quantitat de la dimensió.<br>
+El text designa el significat de la dimensió. El camp "text de quantitat" s'utilitza en una pàgina de producte a la botiga.
+Utilitzeu el camp "text de quantitat de comanda" per especificar un text que es mostrarà a comandes i factures.</span></div>
+<div><span>quantitat mínima:</span><span>Quantitat mínima per a la dimensió. La quantitat mínima es pot establir en unitats senceres o fraccionàries.</span></div>
+<div><span>quantitat màxima:</span><span>Quantitat màxima per a la dimensió. La quantitat màxima es pot establir en unitats senceres o fraccionàries.</span></div>
+<div><span>quantitat per defecte:</span><span>
+Quantitat defecte per a la dimensió. La quantitat predeterminada és una quantitat inicial que es mostra per la dimensió en una pàgina de producte.
+La quantitat predeterminada es pot establir en unitats senceres o fraccionàries.</span></div>
+<div><span>quantity step:</span><span>Increments de quantitat de dimensió. El complement arrodoneix la quantitat a la valor que coincideix amb el pas de quantitat especificat.
+<br> Per exemple, si utilitzeu la dimensió per a la longitud i la longitud ha de limitar-se a increments de 0,2 m, pot establir el pas de quantitat en 0,2.
+El valor ingressat s'arrodonirà a 0.2, 0.4, ... 1.6, 1.8, etc.</span></div>
+<div><span>quantity ratio:</span><span>Relació entre la unitat de mesura de la dimensió i la unitat de mesura del preu.
+Al calcular el preu, el mòdul multiplica la quantitat de dimensió per la relació especificada i fa servir el resultat com una quantitat per als càlculs de preu.
+<br>Per exemple, si estableix el preu del producte per m<sup>2</sup> i li agradaria especificar la longitud en cm, especifiqui la relació com 100.</span></div>
+<div><span>text de quantitat de comanda:</span><span>Text que es mostra després de la quantitat de la dimensió en comandes i factures. Utilitzi el camp "text de quantitat" per especificar un text que es mostra a la pàgina d'un producte a la botiga.</span></div>
+</div>
+EOD;

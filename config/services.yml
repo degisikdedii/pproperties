@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: true
+  
+  psm.twig.extension.psm:
+    class: PrestaShop\Module\Pproperties\PSMExtension
+    tags:
+      - { name: twig.extension }

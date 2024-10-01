@@ -1,0 +1,5 @@
+services:
+    psm.twig.extension.psm:
+        class: PrestaShopBundle\Twig\PSMExtension
+        tags:
+            - { name: twig.extension }

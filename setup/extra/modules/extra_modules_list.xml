@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<modules>
+    <module><name>ppropertiesplugin</name><plugin>1</plugin></module>
+    <module><name>ppropertiesmultidimensional</name><plugin>1</plugin></module>
+    <module><name>ppropertiessmartprice</name><plugin>1</plugin></module>
+    <module><name>cashondeliveryplus</name></module>
+    <module><name>codfee</name></module>
+    <module><name>deotemplate</name></module>
+    <module><name>iqitmegamenu</name></module>
+    <module><name>leofeature</name></module>
+    <module><name>litespeedcache</name></module>
+    <module><name>onepagecheckoutps</name></module>
+    <module><name>paypal</name></module>
+    <module><name>productcomments</name></module>
+    <module><name>prettyurls</name></module>
+    <module><name>ps_emailalerts</name></module>
+    <module><name>ps_emailsmanager</name></module>
+    <module><name>ps_shoppingcart</name></module>
+    <module><name>pspagebuilder</name></module>
+    <module><name>statsbestcategories</name></module>
+    <module><name>statsbestproducts</name></module>
+    <module><name>statsbestsuppliers</name></module>
+    <module><name>statscheckup</name></module>
+    <module><name>statsforecast</name></module>
+    <module><name>statsproduct</name></module>
+    <module><name>statsstock</name></module>
+    <module><name>stthemeeditor</name></module>
+    <module><name>thecheckout</name></module>
+</modules>

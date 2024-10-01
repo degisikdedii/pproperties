@@ -1,0 +1,19 @@
+{% embed 'PrestaShopBundle:Admin/Helpers:bootstrap_popup.html.twig' with {
+  'id': "catalog_manage_templates_modal",
+  'title': "Changing template assignment"|psmtrans,
+  'closable': true,
+  'progressbar': {
+  'id': "catalog_manage_templates_progression",
+  'label': "Changing product..."|psmtrans
+  },
+  'actions': [],
+}%}
+{% block content %}
+<div class="modal-body">
+  {{ 'Changing template in progress...'|psmtrans }}
+  <span id="catalog_manage_templates_failure" style="display: none;color: darkred;">
+    {{ 'Changing template failed.'|psmtrans }}
+  </span>
+</div>
+{% endblock %}
+{% endembed %}

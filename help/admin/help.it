@@ -1,0 +1,222 @@
+<?php
+// IGNORE_THIS_FILE_FOR_TRANSLATION
+$tip = '<p><span class="tip">Suggerimento: se non riesci a trovare il testo richiesto, puoi aggiungere altri testi nella scheda Proprietà.</span></p>';
+$macros = <<<'EOD'
+<p>È possibile creare stringhe di spiegazione dinamiche utilizzando le macro. Quando si utilizzano le macro, il motore del modello calcola e sostituisce i valori della quantità al posto delle macro nella stringa di spiegazione.
+Sono disponibili le seguenti macro.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>Macro</span><span>Descrizione</span></div>
+<div><span>{CRMIN}</span><span>calcolo quantità minima</span></div>
+<div><span>{CRMAX}</span><span>calcolo quantità massima</span></div>
+</div>
+EOD;
+
+$help = array();
+
+$help['pp_qty_policy'] = <<<'EOD'
+<p>La quantità del prodotto può essere vincolata a diverse politiche. La politica definisce come si comporta il modulo e come manipola la quantità del prodotto.</p>
+<p>Quando un utente inserisce la quantità, la quantità ordinata può specificare <em>un numero di articoli </em> (pezzi, pacchi, ecc.) in un carrello.
+Quando l'utente preme il pulsante "Aggiungi al carrello", il modulo aggiunge una riga all'ordine.
+Quando l'utente aggiunge più articoli dello stesso prodotto, il modulo combina tutte le quantità specificate nella stessa riga. È un comportamento regolare di PrestaShop.</p>
+<p>La quantità ordinata può specificare un <em>numero di unità intere</em> (ma non articoli), ad esempio metri.
+Quando l'utente immette la quantità di 45 metri per la corda, la carta della spesa conterrà un prodotto (corda) con la lunghezza specificata di 45 metri
+e non 45 elementi della corda come accadrebbe nell'installazione standard di PrestaShop.
+Durante l'utilizzo di intere unità, ogni volta che l'utente preme il pulsante "Aggiungi al carrello", il modulo aggiunge al carrello una nuova riga con la quantità specificata.
+<span class="note"> Nota: è possibile ignorare questo comportamento scegliendo l'opzione di quantità aggregate in "modalità quantità".</span></p>
+<p>La quantità può anche specificare le <em>unità frazionarie</em> (quantità in valori decimali), come chilogrammo o metro.
+Questo è il comportamento obbligatorio per i negozi di alimentari o di tessuti. Durante l'utilizzo di unità frazionarie, ogni volta che l'utente preme il pulsante "Aggiungi al carrello",
+il modulo aggiunge al carrello una nuova riga con la quantità specificata.
+<span class="note">Nota: è possibile ignorare questo comportamento scegliendo l'opzione di quantità aggregate in "modalità quantità".</span></p>
+EOD;
+
+$help['pp_qty_mode'] = <<<'EOD'
+<p>La modalità quantità definisce se è possibile misurare la quantità esattamente o solo approssimativamente. Ad esempio, se l'utente ordina 2 kg di pere, il peso effettivo può essere leggermente diverso. Puoi ignorare la differenza nel negozio o dare una spiegazione all'utente sulla tua politica commerciale.
+<br>Questa proprietà ha senso solo quando la politica di quantità è impostata su unità intere o frazionarie, ma non su articoli.</p>
+<p>L'opzione delle <em>quantità aggregate</em> consente di specificare cosa succede quando l'utente preme il pulsante "Aggiungi al carrello". Durante l'utilizzo di unità intere o frazionarie, ogni volta che l'utente preme il pulsante "Aggiungi al carrello", il modulo aggiunge una nuova riga con la quantità specificata al carrello. Quando si sceglie l'opzione Quantità aggregate, il modulo tenta di aggiungere una nuova quantità alla riga esistente con lo stesso prodotto nel carrello.</p>
+EOD;
+
+$help['pp_display_mode'] = <<<'EOD'
+<p>La modalità di visualizzazione definisce come il modulo presenta il prezzo del prodotto.</p>
+<p>In modalità <em>normale</em>, il modulo visualizza il prezzo del prodotto come definito dal tema. Di solito il tema enfatizza il prezzo del prodotto per attirare l'attenzione dell'utente.</p>
+<p>Nella modalità <em>mostra prezzo invertito</em> il prezzo unitario viene utilizzato come prezzo principale visualizzato nella pagina del prodotto e sostituisce il prezzo normale nella home page e nelle pagine delle categorie o dei prodotti di vendita incrociata.
+Se vendi un prodotto costoso, puoi specificare le piccole unità con il prezzo basso e rendere il tuo prodotto più attraente per l'utente.
+<br><span class="note">Nota: è necessario specificare un testo del prezzo unitario per la modalità di visualizzazione del prezzo inverso.</span></p>
+<p>La modalità <em>mostra prezzo al dettaglio come prezzo ad unità</em> indica al modulo di visualizzare un prezzo al dettaglio nella posizione del prezzo unitario.
+Questa modalità è utile quando il prodotto ha combinazioni e i prezzi delle combinazioni sono diversi dal prezzo base.</p>
+<p>La modalità <em>mostra il prezzo base ad unità per tutte le combinazioni</em> indica al modulo di visualizzare il prezzo unitario calcolato per l'attributo predefinito per tutte le combinazioni.
+Questa modalità è utile quando il prodotto ha combinazioni con prezzi diversi e si desidera visualizzare informazioni aggiuntive sul prezzo che non dipendono dal prezzo combinato.</p>
+<p>La modalità <em>mostra il prezzo del prodotto obsoleto</em> indica al modulo di visualizzare un prezzo del prodotto obsoleto anziché un prezzo del prodotto calcolato dinamicamente.</p>
+<p>La modalità <em>mostra il prezzo unitario in ordini e fatture</em> indica al modulo, per i prodotti con un prezzo unitario maggiore di zero, di visualizzare un prezzo unitario come dettaglio aggiuntivo negli ordini e nelle fatture.</p>
+<p>The <em>display number of items instead of quantity</em> mode instructs the module to display a number of ordered items instead of a dynamically calculated product quantity.
+This mode is useful when the product uses the multidimensional features and the total calculated quantity depends on the number of items and the quantity or size of each item.</p>
+<p><br>Al fine di fornire ulteriori informazioni all'utente, il modulo visualizza diversi testi e dettagli aggiuntivi su quantità, prezzo del prodotto, unità e prezzo totale in ordini e fatture.
+A volte si desidera non mostrare queste informazioni. È possibile ottimizzare la visualizzazione di questi dettagli selezionando per nascondere dettagli aggiuntivi per <em>prezzo unitario</em>, <em>quantità</em> e <em>prezzo totale</em> in ordini e fatture.</p>
+EOD;
+
+$help['pp_price_display_mode'] = <<<'EOD'
+<p>La visualizzazione dinamica dei prezzi è un ulteriore elemento visivo aggiunto nell'Estensione Proprietà di Prodotto. Il prezzo viene visualizzato per la quantità specificata e immediatamente ricalcolato quando la quantità cambia. Ciò offre all'utente una migliore esperienza di acquisto.</p>
+<p>In modalità <em>normale</em>, il modulo calcola e visualizza il prezzo in un blocco separato.</p>
+<p>Nella modalità <em>come prezzo del prodotto</em>, il modulo visualizza il prezzo calcolato anziché il prezzo del prodotto predefinito.</p>
+<p>Nella modalità <em>nascondi mostra prezzo</em> il modulo non visualizza il prezzo calcolato.</p>
+EOD;
+
+$help['pp_unit_price_ratio'] = <<<'EOD'
+<p>Un rapporto tra il prezzo del prodotto e il prezzo unitario. Ad esempio, se vendi un prodotto in kg e desideri che il prezzo unitario venga visualizzato come "per 100 g", specifica il rapporto del prezzo unitario come 10.</p>
+<p>Il modulo utilizza il rapporto prezzo unitario per calcolare il prezzo unitario del prodotto nel negozio e nel catalogo prodotti. Quando si modifica il prezzo nel catalogo, il prezzo unitario viene ricalcolato automaticamente.</p>
+EOD;
+
+$help['pp_minimum_price_ratio'] = <<<'EOD'
+<p>Una soglia utilizzata per calcolare il prezzo minimo. Quando l'utente specifica una quantità inferiore alla soglia specificata, il prezzo calcolato utilizzando la soglia indicata come quantità. Il risultato è che il prezzo non sarà mai inferiore al prezzo base moltiplicato per la soglia di quantità indicata indipendentemente dalla quantità ordinata.</p>
+EOD;
+
+$help['pp_default_quantity'] = <<<'EOD'
+<p>Specifica la quantità predefinita per acquistare un prodotto. La quantità predefinita è una quantità iniziale visualizzata nella pagina di un prodotto.
+Il modulo utilizza anche la quantità predefinita quando aggiungi il prodotto alla scheda dalle pagine che hanno il pulsante "Aggiungi al carrello" ma non offrono il campo quantità, come le pagine home o le categorie di prodotti.
+Si imposta la quantità predefinita in unità intere o frazionarie.</p>
+EOD;
+
+$help['pp_qty_step'] = <<<'EOD'
+<p>Specificare gli incrementi di quantità per limitare la quantità immessa dall'utente ai valori specifici.
+Il modulo arrotonda la quantità ordinata al valore corrispondente al passo quantità specificata.
+Ad esempio, se si vendono i tessuti con incrementi di 0,2 m, è possibile impostare lo step quantità a 0.2.
+La quantità ordinata verrà arrotondata a 0,2, 0,4, ... 1,6, 1,8, ecc.</p>
+<p><em>funzionalità Pro</em><br>Nella versione Pro, è possibile specificare il passaggio quantità nella pagina del prodotto nel back office.
+Funziona sia con prodotti semplici che con combinazioni. È possibile specificare lo step quantità separatamente per ciascuna combinazione.</p>
+EOD;
+
+$help['pp_qty_shift'] = <<<'EOD'
+<p>Specify the change in quantity when user presses up and down buttons in the quantity field.
+This is differed from the quantity step. The quantity shift does not restrict entering any arbitrary value.
+This attribute has no effect when either the quantity step or the specific quantity values are in use.</p>
+EOD;
+
+$help['pp_qty_decimals'] = <<<'EOD'
+<p>Specify how many decimals you want to display for the quantity. This attribute works only when the quantity policy is set to fractional units.</p>
+EOD;
+
+$help['pp_qty_values'] = <<<'EOD'
+<p>Specificare uno o più valori da utilizzare come quantità dell'ordine. Specificando qui i valori, si limita effettivamente la quantità immessa dall'utente all'elenco specificato. Questo può essere utile, ad esempio, quando vendi il tuo prodotto nelle confezioni con quantità predefinite.</p>
+<p>Se si desidera specificare un solo valore, digitare semplicemente il valore nel campo di input dei valori di quantità specifici.<br>
+Se si desidera specificare più valori, separarli utilizzando il tasto barra verticale. Ad esempio: 10|20|40|100</p>
+EOD;
+
+$help['pp_explanation'] = <<<'EOD'
+<p>La spiegazione incorporata viene visualizzata nel blocco degli ordini nella pagina di un prodotto. Di solito è un messaggio speciale che spiega la politica commerciale, ma può essere qualsiasi testo o HTML valido e può includere immagini.</p>
+<p>È possibile creare stringhe di spiegazione dinamiche utilizzando le macro. Quando si utilizzano le macro, il motore del modello calcola e sostituisce i valori della quantità al posto delle macro nella stringa di spiegazione.</p>
+Sono disponibili le seguenti macro.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>Macro</span><span>Descrizione</span></div>
+<div><span>{MIN}</span><span>quantità minima</span></div>
+<div><span>{MAX}</span><span>quantità massima</span></div>
+<div><span>{TMAX}</span><span>quantità massima totale</span></div>
+<div><span>{STEP}</span><span>step quantità</span></div>
+<div><span>{URATIO}</span><span>rapporto unità-prezzo</span></div>
+</div>
+EOD;
+$help['pp_explanation'] .= '<br>' . $tip;
+
+$help['pp_css'] = <<<'EOD'
+<p>Classi CSS separate da spazio. Il modulo aggiunge queste classi all'HTML per i prodotti che utilizzano questo tema. È possibile utilizzare questo campo per perfezionare l'aspetto del prodotto nel negozio.</p>
+<p>Puoi creare le tue classi CSS e aggiungerle nel seguente file: <span style="white-space: nowrap; font-family: monospace;">themes/&lt;tuo_nome_tema&gt;/modules/pproperties/css/custom.css</span></p>
+<p>Puoi anche usare un numero di classi predefinite.</p>
+<div class="pp-table fill first-col-nowrap first-col-monospace">
+<div class="thead"><span>classe CSS</span><span>Descrizione</span></div>
+<div><span>psm-hide-{cssClass}</span><span>Generare automaticamente lo stile CSS per nascondere qualsiasi elemento sullo schermo. Sostituisci una stringa <span style="white-space: nowrap; font-family: monospace;">{cssClass}</span> con un nome di classe CSS valido per generare una definizione di stile CSS pertinente.
+<br>Per esempio, <span style="white-space: nowrap; font-family: monospace;">psm-hide-product-unit-price</span> genererà il seguente stile CSS:<br>
+<span style="white-space: nowrap; font-family: monospace;">.psm-hide-product-unit-price .product-unit-price {display: none !important;}</span>
+</span>.</span></div>
+<div><span>psm-attribute-label-highlight</span><span>Evidenzia e sottolinea i nomi dei gruppi di attributi di prodotto in una pagina del prodotto.</span></div>
+<div><span>psm-attribute-color-{size}</span><span>Dimensioni di un rettangolo visivo per un gruppo di attributi di prodotto definito come attributo di colore.
+Sostituisci una stringa <span style="white-space: nowrap; font-family: monospace;">{size}</span> con uno dei seguenti valori: <span style="white-space: nowrap; font-family: monospace;">
+small, medium, large, xlarge, xxlarge, xxxlarge, jumbo</span>.</span></div>
+<div><span>psm-attribute-color-text-visible</span><span>Rendi i nomi degli attributi visibili per un gruppo di attributi di prodotto definito come attributo di colore.</span></div>
+<div><span>pp-quantity-wanted-hidden</span><span>Hide an input quantity field on the product page.</span></div>
+<div><span>pp-product-list-add-to-cart-hidden</span><span>Hide "add to cart" button on category, new products, popular products, best sellers, search results and other pages that display a product list.
+<br><em>Note: works only with the compatible themes.</em></span></div>
+<div><span>pp-packs-calculator-quantity-hidden</span><span>Hide a packs calculator quantity field on a product page when the template uses the multidimensional plugin packs calculation feature.</span></div>
+<div><span>pp-ext-highlight</span><span>Evidenzia e enfatizza il blocco dimensioni in una pagina del prodotto quando il modello utilizza le funzionalità del plug-in multidimensionale.</span></div>
+<div><span>pp-ext-nohighlight</span><span>Non evidenziare e enfatizzare il blocco dimensioni in una pagina del prodotto quando il modello utilizza le funzionalità del plug-in multidimensionale.</span></div>
+<div><span>pp-ext-position-after-{cssClass}</span><span>Move the dimensions block after the specified element on the screen. Replace a <span style="white-space: nowrap; font-family: monospace;">{cssClass}</span> string with a valid CSS class name.
+<br>For example, <span style="white-space: nowrap; font-family: monospace;">pp-ext-position-after-product-variants</span> will place the dimensions block after the product attributes.
+<br><em>Note: the dimensions block can be moved only within the same HTML form element.</em></span></span></div>
+</div>
+EOD;
+
+$help['pp_customization'] = <<<'EOD'
+<p>Il modulo di Estensione Proprietà di Prodotto supporta personalizzazioni definite dall'utente. Puoi scrivere il tuo codice in PHP e il modulo chiamerà il tuo codice quando necessario.</p>
+<p>È possibile scrivere, ad esempio, il codice che convalida i prodotti in un ordine utilizzando le proprie regole. Dal tuo codice, puoi chiamare i metodi interni di PrestaShop, accedere al database o eseguire qualsiasi altra attività progettata.
+Ciò offre infinite possibilità di adattare il modulo alle proprie esigenze.</p>
+<p>Per utilizzare le personalizzazioni è necessario installare il modulo gratuito "Product Properties Extension customization". Si prega di contattare il nostro supporto clienti per istruzioni. Il team di PS & More può anche scrivere codice per te e offre un servizio di personalizzazione a pagamento per i nostri clienti.</p>
+EOD;
+
+$help['pp_ext_method'] = <<<'EOD'
+<div class="pp-table first-col-nowrap">
+<div><span>moltiplicazione:</span><span>le dimensioni in tutte le direzioni vengono moltiplicate (dando area o volume)</span></div>
+<div><span>somma:</span><span>le dimensioni in tutte le direzioni vengono sommate</span></div>
+<div><span>dimensione singola:</span><span>la quantità di dimensione specificata viene utilizzata per il calcolo del prezzo</span></div>
+<div><span>disabilita il calcolo:</span><span>le dimensioni servono solo come campi di input e non influiscono sul calcolo del prezzo (richiede plug-in Multidimensionale Pro o Premium)</span></div>
+<div><span>calcolo personalizzato:</span><span>calcolo personalizzato definito dall'utente (richiede plug-in Multidimensionale Pro o Premium)<br>
+Puoi scrivere il tuo codice in PHP e il plugin chiamerà il tuo codice quando necessario.
+Dal tuo codice, puoi chiamare i metodi interni di PrestaShop, accedere al database o eseguire qualsiasi altra attività progettata.
+Ciò offre infinite possibilità di eseguire tutti i calcoli necessari.</span></div>
+</div>
+EOD;
+
+$help['pp_ext_precision'] = <<<'EOD'
+<p>Round the display of the calculation result and the total calculation result to the specified number of decimal digits.
+If the precision is positive, the number is rounded to precision significant digits after the decimal point.
+If the precision is negative, the number is rounded to precision significant digits before the decimal point.
+<br>Round affects only how the number is displayed and not how it is used for the price calculations.</p>
+EOD;
+
+$help['pp_ext_explanation'] = <<<'EOD'
+<p>Una spiegazione visualizzata sotto il risultato del calcolo. Di solito è un messaggio speciale che spiega la politica commerciale, ma può essere qualsiasi messaggio.</p>
+EOD;
+$help['pp_ext_explanation'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_minimum_quantity_text'] = <<<'EOD'
+<p>Testo visualizzato quando la quantità calcolata è superiore al minimo specificato.</p>
+EOD;
+$help['pp_ext_minimum_quantity_text'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_maximum_quantity_text'] = <<<'EOD'
+<p>Testo visualizzato quando la quantità calcolata è superiore al massimo specificato.</p>
+EOD;
+$help['pp_ext_maximum_quantity_text'] .= $macros.'<br>'. $tip;
+
+$help['pp_ext_minimum_price_ratio'] = <<<'EOD'
+<p>Una soglia utilizzata per calcolare il prezzo minimo. Dopo che l'utente specifica le quantità multidimensionali, il calcolo viene eseguito in base al metodo di calcolo indicato.
+Se il prezzo per la quantità calcolata è inferiore alla soglia specificata, il prezzo calcolato utilizzando la soglia indicata come quantità.
+Il risultato è che il prezzo non sarà mai inferiore al prezzo base moltiplicato per la soglia di quantità indicata indipendentemente dalla quantità ordinata.</p>
+EOD;
+
+$help['pp_ext_policy'] = <<<'EOD'
+<p>La politica delle dimensioni specifica come vengono utilizzate le dimensioni.</p>
+<p>Nel metodo delle dimensioni <em>predefinito</em> il cliente immette le dimensioni in una pagina del prodotto. Ad esempio larghezza, lunghezza o altezza.
+In this mode the product represented by two different quantities. The one is the quantity calculated using the specified calculation method and can be a square, perimeter, volume or something else.
+The other is the quantity that the customer enters in the regular quantity field. This quantity specifies the number of ordered items where each item has the size of the calculated quantity.</p>
+<p>Nella modalità <em>calcolatrice pacchi</em> il cliente specifica le dimensioni per calcolare il numero di articoli del prodotto.
+Ad esempio, se vendi piastrelle in cartoni, le dimensioni utilizzate per calcolare l'area. L'area calcolata in metri quadrati (o altre unità) determina il numero di cartoni e il prezzo.</p>
+<p>Per specificare la quantità del prodotto nella confezione (il numero di metri quadrati nell'imballaggio nel nostro esempio), utilizzare il campo "Rapporto unità-prezzo" nel modello o il campo "Prezzo unitario"
+in una pagina del prodotto nel catalogo prodotti in il back office.</p>
+EOD;
+
+$help['pp_ext_dimensions'] = <<<'EOD'
+<div class="pp-table first-col-nowrap">
+<div><span>dimensione:</span><span>Nome della dimensione.<br><i>Impostare questo campo su vuoto per rimuovere la dimensione.</i></span></div>
+<div><span>testo quantitativo:</span><span>Testo visualizzato dopo la quantità della dimensione.<br>
+Il testo indica il significato della dimensione. Il campo "testo quantità" viene utilizzato nella pagina di un prodotto nel negozio.
+Utilizzare il campo "Testo quantità ordine" per specificare un testo visualizzato in ordini e fatture.</span></div>
+<div><span>quantità minima:</span><span>Quantità minima per la dimensione. La quantità minima può essere impostata in unità intere o frazionarie.</span></div>
+<div><span>quantità massima:</span><span>Quantità massima per la dimensione. La quantità massima può essere impostata in unità intere o frazionarie.</span></div>
+<div><span>quantità predefinita:</span><span>Default quantity for the dimension. The default quantity is an initial quantity displayed for the dimension on a product page.
+La quantità predefinita può essere impostata in unità intere o frazionarie.</span></div>
+<div><span>step quantità:</span><span>Incrementi quantitativi della dimensione. Il plugin arrotonda la quantità al valore corrispondente alla fase della quantità specificata.
+<br>Ad esempio, se si utilizza la dimensione per la lunghezza e la lunghezza deve essere limitata a incrementi di 0,2 m, è possibile impostare il passo della quantità su 0,2.
+Il valore inserito verrà arrotondato a 0,2, 0,4, ... 1,6, 1,8, ecc.</span></div>
+<div><span>rapporto quantità:</span><span>Rapporto tra l'unità di misura dimensionale e l'unità di misura del prezzo.
+Durante il calcolo del prezzo, il modulo moltiplica la quantità della dimensione per il rapporto specificato e utilizza il risultato come quantità per i calcoli del prezzo.
+<br>Ad esempio, se si imposta il prezzo del prodotto per m<sup>2</sup> e si desidera specificare la lunghezza in cm, specificare il rapporto su 100.</span></div>
+<div><span>testo quantità ordine:</span><span>Testo visualizzato dopo la quantità della dimensione in ordini e fatture. Utilizzare il campo "testo quantità" per specificare un testo visualizzato su una pagina del prodotto nel negozio.</span></div>
+</div>
+EOD;

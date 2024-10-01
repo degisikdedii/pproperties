@@ -1,0 +1,39 @@
+{#**
+* @author    PS&More www.psandmore.com <support@psandmore.com>
+* @copyright Since 2011 PS&More
+* @license   https://psandmore.com/licenses/sla Software License Agreement
+*#}
+<div id="bulkManageTemplatesForm" class="card card-primary-outline" style="display:none;" data-adminppropertiesurl="{{ adminppropertiesurl }}">
+  <div class="card-block">
+    <h3 class="card-title">
+      <i class="material-icons icon-template">reorder</i> {{ 'Manage templates'|psmtrans }}
+    </h3>
+    {% if error_no_template is defined %}
+    <div class="alert alert-warning">
+      <p>{{ 'Please choose template.'|psmtrans }}</p>
+    </div>
+    {% endif %}
+    <div class="alert alert-info">
+      <p>{{ 'assign_or_remove_template_for_several_products_at_once'|psmtrans }}</p>
+    </div>
+    <fieldset class="form-group">
+      <label class="form-control-label col-3 col-md-2" for="id_pp_template">{{ 'template'|psmtrans|ucfirst }}:</label>
+      <select id="bulk_action_selected_id_pp_template" class="custom-select col-8 col-xl-6" name="bulk_action_selected_id_pp_template">
+        {% for template in templates %}
+        <option value="{{ template.id_pp_template }}">{{ template.name }}</option>
+        {% endfor %}
+      </select>
+    </fieldset>
+    <div>
+      <button class="btn btn-primary" data-action="assign" data-action-url="{{ adminppropertiesurl }}&action=bulkManageTemplates&op=assign">
+        <i class="material-icons">add_circle_outline</i> {{ 'Assign template'|psmtrans }}
+      </button>
+      <button class="btn btn-secondary" data-action="remove" data-action-url="{{ adminppropertiesurl }}&action=bulkManageTemplates&op=remove">
+        <i class="material-icons">delete</i> {{ 'Remove template'|psmtrans }}
+      </button>
+      <button class="btn btn-default" data-action="cancel">
+        <i class="material-icons">clear</i> {{ 'Cancel'|trans({}, 'Admin.Actions') }}
+      </button>
+    </div>
+  </div>
+</div>
